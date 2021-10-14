@@ -76,62 +76,62 @@ void performRound(Deck &d, bool& t)
         static short cardsLeft = 52;
         static bool isWar = false;
         static short war_level = 0;
-        while (cardsLeft >= 0) {
-        if(!isWar)
-        {
-                clear();
-                std::cout << "ROUND " << rounds << std::endl;
-        }
-        t = true;
-        std::cout << "It's your turn. Press Enter to pick up a card from the deck: ";
-        std::cin.ignore();
-        std::cout << "Your card is " << d.getTop(t) << std::endl;
-        cardsLeft--;
-        t = false;
-        std::cout << "AI is picking up its card";
-        loading(2);
-        std::cout << "AI's card is " << d.getTop(t) << std::endl;
-        cardsLeft--;
-        if(d.getPlayerVal() < d.getAIVal())
-        {
-                std::cout << "AI wins this round" << std::endl;
-                if (isWar) 
+        while (cardsLeft >= 2) {
+                if(!isWar)
                 {
-                        isWar = false;
-                        d.changeAIsCards(2 + 2 * war_level);
+                        clear();
+                        std::cout << "ROUND " << rounds << std::endl;
                 }
-                else d.changeAIsCards(2);
-        }
-        else if (d.getPlayerVal() > d.getAIVal())
-        {
-                std::cout << "You win this round" << std::endl;
-                if (isWar) 
+                t = true;
+                std::cout << "Cards left in the deck: " << cardsLeft << std::endl;
+                std::cout << "It's your turn. Press Enter to pick up a card from the deck: ";
+                std::cin.ignore();
+                std::cout << "Your card is " << d.getTop(t) << std::endl;
+                cardsLeft--;
+                t = false;
+                std::cout << "AI is picking up its card";
+                loading(2);
+                std::cout << "AI's card is " << d.getTop(t) << std::endl;
+                cardsLeft--;
+                if(d.getPlayerVal() < d.getAIVal())
                 {
-                        isWar = false;
-                        d.changePlayersCards(2 + 2 * war_level);
+                        std::cout << "AI wins this round" << std::endl;
+                        if (isWar) 
+                        {
+                                isWar = false;
+                                d.changeAIsCards(2 + 2 * war_level);
+                        }
+                        else d.changeAIsCards(2);
                 }
-                else d.changePlayersCards(2);
-        }
-        else
-        {
-                std::cout << "This means WAR" << std::endl; 
-                while (d.getPlayerVal() == d.getAIVal()) {
-                        isWar = true;
-                        war_level++;
-                        performRound(d, t); 
+                else if (d.getPlayerVal() > d.getAIVal())
+                {
+                        std::cout << "You win this round" << std::endl;
+                        if (isWar) 
+                        {
+                                isWar = false;
+                                d.changePlayersCards(2 + 2 * war_level);
+                        }
+                        else d.changePlayersCards(2);
                 }
-        };
-        if (!isWar) {
-                printResults(rounds,d);
-                        std::cin.ignore();
-                rounds++;
-        }
+                else
+                {
+                        std::cout << "This means WAR" << std::endl; 
+                        while (d.getPlayerVal() == d.getAIVal()) {
+                                isWar = true;
+                                war_level++;
+                                performRound(d, t); 
+                        }
+                };
+                if (!isWar) {
+                        printResults(rounds,d);
+                        rounds++;
+                }
         }
         clear();
         if(d.getPlayersCards() > d.getAIsCards())
-                std::cout << "CONGRATULATIONS! YOU'VE WON AFTER " << rounds << "ROUNDS WITH " << d.getPlayersCards() << "CARDS" << std::endl;
+                std::cout << "CONGRATULATIONS! YOU'VE WON AFTER " << rounds << " ROUNDS WITH " << d.getPlayersCards() << " CARDS" << std::endl;
         else
-                std::cout << "YOU'VE LOST AFTER " << rounds << "ROUNDS WITH " << d.getPlayersCards() << "CARDS" << std::endl;
+                std::cout << "YOU'VE LOST AFTER " << rounds << " ROUNDS WITH " << d.getPlayersCards() << " CARDS" << std::endl;
 
 }
 void printResults(int rounds, Deck& de)
