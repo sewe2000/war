@@ -1,4 +1,4 @@
-CXXFLAGS = -std=c++20 -g
+CXXFLAGS = -std=c++20 -O2 -Wall 
 war: obj/main.o obj/deck.o
 	g++ obj/* -o war
 obj/main.o: src/main.cpp
@@ -8,3 +8,6 @@ obj/deck.o: src/deck.cpp include/deck.hpp include/card.hpp
 clean:
 	rm -f war
 	rm -f obj/*
+install:
+	mkdir -p /usr/bin
+	cp war /usr/bin
