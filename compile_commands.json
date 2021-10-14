@@ -1,0 +1,14 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-o",
+      "war",
+      "src/main.cpp"
+    ],
+    "directory": "/home/seweryn/dev/qt/projects/war",
+    "file": "/home/seweryn/dev/qt/projects/war/src/main.cpp",
+    "output": "/home/seweryn/dev/qt/projects/war/war"
+  }
+]
