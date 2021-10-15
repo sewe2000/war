@@ -1,4 +1,3 @@
-#include <boost/format/format_fwd.hpp>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -13,7 +12,7 @@
 #include <unistd.h>
 #define clear() system("clear")
 #endif
-#ifdef __WINDOWS__
+#ifdef _WIN32
 #include <windows.h>
 #define clear() system("cls")
 #endif
